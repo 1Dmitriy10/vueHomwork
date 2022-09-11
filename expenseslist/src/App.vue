@@ -2,7 +2,9 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <RenderList :expensesList="expensesList"/>
-    <AddExpenses/>
+    <button @click="show=!show">ADD NEW COST</button>
+    <AddExpenses v-show="show"
+     @newPaymant="newPaymant"/>
   </div>
 </template>
 
@@ -18,7 +20,8 @@ export default {
   },
   data () {
     return {
-      expensesList: []
+      expensesList: [],
+      show: false
     }
   },
   methods: {
@@ -39,6 +42,9 @@ export default {
           category: 'Food',
           value: 532
         }]
+    },
+    newPaymant (data) {
+      this.expensesList.push(data)
     }
   },
   created () {
