@@ -1,9 +1,12 @@
 <template>
     <div>
       <div :class="$style.input_box">
-        <input type="text"
-        placeholder="paymant description"
-        v-model="category">
+        <select v-model="category">
+        <option v-for="option in getOptions"
+        :key="option"
+        :value="option"
+        >{{ option }}</option>
+        </select>
         <input type="number"
         placeholder="paymant amount"
         v-model="value">
@@ -24,7 +27,8 @@ export default {
       date: '',
       category: '',
       value: '',
-      data: {}
+      data: {},
+      getOptions: ['food', 'sport', 'health']
     }
   },
   methods: {
@@ -34,7 +38,8 @@ export default {
         category: this.category,
         value: this.value
       }
-      this.$emit('newPaymant', this.data)
+      // this.$emit('newPaymant', this.data)
+      this.$store.commit('SET_NEW_PAYMENT', this.data)
     }
   },
   computed: {

@@ -25,30 +25,14 @@ export default {
     }
   },
   methods: {
-    fetchData () {
-      return [
-        {
-          date: '28.03.2020',
-          category: 'Food',
-          value: 169
-        },
-        {
-          date: '24.03.2020',
-          category: 'Transport',
-          value: 360
-        },
-        {
-          date: '24.03.2020',
-          category: 'Food',
-          value: 532
-        }]
-    },
     newPaymant (data) {
       this.expensesList.push(data)
     }
   },
   created () {
-    this.expensesList = this.fetchData()
+    this.$store.dispatch('getPaymentList')
+
+    // this.expensesList = this.fetchData()
   }
 }
 </script>

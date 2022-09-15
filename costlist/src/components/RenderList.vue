@@ -8,7 +8,7 @@
         </div>
         <ul :class="$style.items_box">
             <li :class="$style.items_row"
-            v-for="(item, index) of expensesList"
+            v-for="(item, index) of renderList"
              :key="index">
             <div :class="$style.item_number">{{ index+1 }}</div>
             <div :class="$style.item_date">{{ item.date }}</div>
@@ -30,6 +30,14 @@ export default {
   },
   data () {
     return {
+    }
+  },
+  created () {
+    this.renderList()
+  },
+  computed: {
+    renderList () {
+      return this.$store.getters.GET_PAYMENT_LIST.page1
     }
   }
 }
