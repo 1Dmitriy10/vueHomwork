@@ -2,21 +2,24 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <RenderList :expensesList="expensesList"/>
+    <MyPagination/>
     <button @click="show=!show">ADD NEW COST</button>
     <AddExpenses v-show="show"
-     @newPaymant="newPaymant"/>
+     @newPaymant = "newPaymant"/>
   </div>
 </template>
 
 <script>
 import RenderList from './components/RenderList.vue'
 import AddExpenses from './components/AddExpenses.vue'
+import MyPagination from './components/Pagination.vue'
 
 export default {
   name: 'App',
   components: {
     RenderList,
-    AddExpenses
+    AddExpenses,
+    MyPagination
   },
   data () {
     return {
