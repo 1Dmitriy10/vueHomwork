@@ -22,7 +22,9 @@ export default new Vuex.Store({
     paymentsListPage: []
   },
   getters: {
-    GET_PAYMENT_LIST: state => state.paymentsList
+    GET_PAYMENT_LIST: state => state.paymentsList,
+    GET_RENDER_PAGE: state => state.paymentsListPage,
+    GET_ALL_PAGE: state => Object.keys(state.paymentsList)
   },
   mutations: {
     SET_PAYMENT_LIST (state, list) {
@@ -36,12 +38,23 @@ export default new Vuex.Store({
           Vue.set(this.state.paymentsList, `page${state.paymentsList[page].length}`, [data])
         }
       }
+    },
+    SET_DEFAULT_RENDER_PAGE (state, list) {
+      state.paymentsListPage = list
+    },
+    SET_RENDER_PAGE (state, page) {
+      console.log(page)
+      state.paymentsListPage = state.paymentsList[page]
     }
   },
   actions: {
     getPaymentList ({ commit }) {
       const getPaymentsList = paymentList
       commit('SET_PAYMENT_LIST', getPaymentsList)
+    },
+    getDefaultPaymentListPage ({ commit }) {
+      const getPaymentsListPage = paymentList.page1
+      commit('SET_DEFAULT_RENDER_PAGE', getPaymentsListPage)
     }
   },
   modules: {

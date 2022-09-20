@@ -1,11 +1,10 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <RenderList :expensesList="expensesList"/>
-    <MyPagination/>
+    <RenderList :page='page'/>
+    <MyPagination @page='getPage' :newPay='newPay'/>
     <button @click="show=!show">ADD NEW COST</button>
-    <AddExpenses v-show="show"
-     @newPaymant = "newPaymant"/>
+    <AddExpenses @addNewPay="getNewPay" v-show="show"/>
   </div>
 </template>
 
@@ -23,19 +22,22 @@ export default {
   },
   data () {
     return {
-      expensesList: [],
-      show: false
+      show: false,
+      page: '',
+      newPay: ''
     }
   },
   methods: {
-    newPaymant (data) {
-      this.expensesList.push(data)
+    getPage (data) {
+      this.page = data
+    },
+    getNewPay (it) {
+      this.newPay = it
     }
   },
   created () {
     this.$store.dispatch('getPaymentList')
-
-    // this.expensesList = this.fetchData()
+    this.$store.dispatch('getDefaultPaymentListPage')
   }
 }
 </script>

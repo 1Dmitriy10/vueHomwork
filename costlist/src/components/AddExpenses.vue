@@ -38,7 +38,7 @@ export default {
         category: this.category,
         value: this.value
       }
-      // this.$emit('newPaymant', this.data)
+      this.$emit('addNewPay', true)
       this.$store.commit('SET_NEW_PAYMENT', this.data)
     }
   },

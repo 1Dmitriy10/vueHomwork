@@ -23,9 +23,8 @@
 export default {
   name: 'renderList',
   props: {
-    expensesList: {
-      type: Array,
-      default: () => ([])
+    page: {
+      type: String
     }
   },
   data () {
@@ -33,8 +32,13 @@ export default {
       list: []
     }
   },
+  watch: {
+    page: function () {
+      this.list = this.$store.getters.GET_RENDER_PAGE
+    }
+  },
   created () {
-    this.list = this.$store.getters.GET_PAYMENT_LIST.page1
+    this.list = this.$store.getters.GET_RENDER_PAGE
   }
 }
 </script>
